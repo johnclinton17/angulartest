@@ -1,0 +1,99 @@
+<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-4"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="formReset()">ADD POST</button></div>
+
+	<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		      <form [formGroup]="popupForm" (ngSubmit)="subcomForm(popupForm.value)">
+                    <div class="form-group" [ngClass]="{'has-error':!popupForm.controls['name'].valid && popupForm.controls['name'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Name" [formControl]="popupForm.controls['name']" [ngModel]="editItem.name"/>
+                    </div>
+                    
+                    <div class="form-group" [ngClass]="{'has-error':!popupForm.controls['cemail'].valid && popupForm.controls['cemail'].touched}">
+                        <input class="form-control" type="email" placeholder="Company Email" [formControl]="popupForm.controls['cemail']" [ngModel]="editItem.cemail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                        <div *ngIf="popupForm.controls['cemail'].hasError('required') && popupForm.controls['cemail'].touched" class="alert alert-danger"> Please add an email address</div>
+                        <div *ngIf="popupForm.controls['cemail'].hasError('pattern') && popupForm.controls['cemail'].touched" class="alert alert-danger">Enter valid email address</div>
+                    </div>
+                    	
+                     <div class="form-group" [ngClass]="{'has-error':!popupForm.controls['phone'].valid && popupForm.controls['phone'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Phone" [formControl]="popupForm.controls['phone']" [ngModel]="editItem.phone" />
+                        <div *ngIf="popupForm.controls['phone'].hasError('required') && popupForm.controls['phone'].touched" class="alert alert-danger"> Please add the phone no</div>
+                    </div>
+                    
+                     <div class="form-group" [ngClass]="{'has-error':!popupForm.controls['address'].valid && popupForm.controls['address'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Address" [formControl]="popupForm.controls['address']" [ngModel]="editItem.address"/>
+                        <div *ngIf="popupForm.controls['address'].hasError('required') && popupForm.controls['address'].touched" class="alert alert-danger"> Please add the address</div>
+                    </div>
+                    
+                    <div class="form-group" [ngClass]="{'has-error':!popupForm.controls['city'].valid && popupForm.controls['city'].touched}">
+                        <input class="form-control" type="text" placeholder="City" [formControl]="popupForm.controls['city']" [ngModel]="editItem.city"/>
+                        <div *ngIf="popupForm.controls['city'].hasError('required') && popupForm.controls['city'].touched" class="alert alert-danger"> Please add the city</div>
+                    </div>
+                    <div class="form-group" >
+                        <input class="fileupl" type="file" id="profile_pic" name="photo" accept="image/gif, image/jpeg, image/png" ng2FileSelect [uploader]="uploader" />
+                    </div>
+               
+                    <div class="form-group">
+                        <input class="btn btn-primary" type="submit" value="Submit" (click)="uploader.uploadAll()" [disabled]="!popupForm.valid"  />
+                      
+{{editItem | json}}
+
+{{popupForm.valid}}
+
+                    </div>
+                </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+
+    <h2>Details</h2>
+    
+</div>
+
+
+
+<div class="col-md-10 col-md-offset-1">
+<h2>Companies Lists</h2>
+ <table class="table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Phone</th>
+		<th>Address</th>
+        <th>City</th>
+		<th>images</th>
+		<th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr *ngFor="let company of allcomp; let rowIndex=index">
+		<td>{{rowIndex+1}}</td>
+		<td>{{ company.name }}</td>
+		<td>{{ company.cemail }}</td>
+		<td>{{ company.phone }}</td>
+		<td>{{ company.address }}</td>
+		<td>{{ company.city }}</td>
+        <td><img *ngIf="company.profile_pic" width="25" src="http://localhost:3000/uploads/{{company.profile_pic}}"/></td>
+		<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="editcomForm(company)">Edit</button><a href="javascript:void(0)" (click)="deleteFieldValue4(company._id)" class="btn btn-primary">Delete</a></td>
+	</tr>
+    </tbody>
+  </table>
+
+
+</div>

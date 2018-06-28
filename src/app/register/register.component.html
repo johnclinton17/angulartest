@@ -1,0 +1,76 @@
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+    <h4 style="margin:40px 0 15px">Register form</h4>
+    
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      
+      <div class="form-group">
+        <input placeholder="Name" type="text" class="form-control" name="name" [(ngModel)]="registerval.name"  #name="ngModel" required/>
+         <small [hidden]="name.valid || (name.pristine && !registerForm.submitted)" class="text-danger">
+            Name is required.
+          </small>
+      </div>
+      <div class="form-group">
+        <input placeholder="Email" type="email"  class="form-control" name="email" [(ngModel)]="registerval.email" #email="ngModel" required />
+         <small [hidden]="email.valid || (email.pristine && !registerForm.submitted)" class="text-danger">
+            Email is required.
+          </small>
+      </div>
+      <div class="form-group">
+        <input placeholder="Phone" type="text"  class="form-control" name="phone" [(ngModel)]="registerval.phone"   #phone="ngModel" required/>
+         <small [hidden]="phone.valid || (phone.pristine && !registerForm.submitted)" class="text-danger">
+            Phone no is required.
+          </small>
+      </div>
+       <div class="form-group">
+        <input placeholder="Address" type="text"  class="form-control" name="address" [(ngModel)]="registerval.address"  #address="ngModel" required />
+        <small [hidden]="address.valid || (address.pristine && !registerForm.submitted)" class="text-danger">
+            Address no is required.
+          </small>
+      
+      </div>
+      <div class="form-group">
+        <input placeholder="Password" type="text"  class="form-control" name="password" [(ngModel)]="registerval.password"  #password="ngModel" required />
+        <small [hidden]="password.valid || (password.pristine && !registerForm.submitted)" class="text-danger">
+            password  is required.
+          </small>
+      
+      </div>
+       <div class="form-group">
+      <input class="btn btn-primary" type="submit" value="Register" [disabled]="!registerForm.valid" />
+      </div>
+      </form> 
+</div>
+
+<div class="col-md-12 col-md-12">
+<h2>Our Users Lists</h2>
+
+<div class="table">
+<table>
+<tr>
+<th>S.No</th>
+<th>Name</th>
+<th>Email</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Password</th>
+<th>Actions</th>
+</tr>
+
+<tr *ngFor="let user of users; let i=index">
+<td>{{i+1}}</td>
+<td>{{ user.name }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.address }}</td>
+<td>{{ user.phone }}</td>
+<td>{{ user.password }}</td>
+<td>
+  <button class="btn btn-primary"  type="button" (click)="deleteFieldValue3(user._id)">Delete</button></td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+</div>

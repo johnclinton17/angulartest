@@ -1,0 +1,60 @@
+<div class="col-md-12">
+<div class="col-md-4"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">ADD POST</button></div>
+</div>
+<div class="clearfix"></div><hr>
+<div class="col-md-12 ">
+
+	 <table class="table">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>Title</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr *ngFor="let post of posts; let i=index"> 	
+		<td>{{i+1}}</td>
+		<td>{{post.title}}</td>
+
+		<td>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="editcomForm(post)">Edit</button>
+		  <button class="btn btn-primary"  type="button" (click)="deleteFieldValue1(post._id)">Delete</button>
+		</td>
+	</tr>
+    </tbody>
+  </table>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+       <form #postForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+			<div class="title">	
+				<div class="form-group">
+		        <input placeholder="title" type="text" class="form-control" name="title" [(ngModel)]="registerval.title"  #title="ngModel" [ngModel]="editItem.title" required/>
+		         <small [hidden]="title.valid || (name && !postForm.submitted)" class="text-danger">
+		            title is required.
+		          </small>
+		     	</div>
+			</div>
+			<div class="form-group">
+		      <input class="btn btn-primary" type="submit" value="Register" [disabled]="!postForm.valid" />
+		    </div>
+		</form> 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

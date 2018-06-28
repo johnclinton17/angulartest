@@ -1,0 +1,27 @@
+.top-bar { background: rgba(0,0,0,.5);display: block;overflow: auto;padding:0 50px; }
+.nav-brand {display: inline-block;float: left;width: 150px; }
+ul.datetime {list-style: none;padding:0; }
+ul.datetime li{float: left;padding:0 5px;border-right: 1px solid #fff;  }
+ul.datetime li:last-child{float: left;padding:0 5px;border-right: none;  }
+ul.primary-menu { list-style: none; }
+ul.primary-menu li{ float: left;border-right: 1px solid #fff; }
+ul.primary-menu li:last-child{ float: left;border-right: none; }
+
+.navbar {
+    margin-bottom: 0px;
+    float: right;
+    display: block;
+}
+
+.second-bar {
+    background: #fdb813;
+    color: #333;
+    display: inline-block;
+    clear: both;
+    /* overflow: auto; */
+    width: 100%;
+    position: relative;
+}
+
+.col-md-6.grey.footerblocks {    background: #ccc;}
+

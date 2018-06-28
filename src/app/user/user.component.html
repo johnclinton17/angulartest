@@ -1,0 +1,72 @@
+
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+    <h2>Company Details</h2>
+    <form [formGroup]="companyForm" (ngSubmit)="subcomForm(companyForm.value)">
+                    <div class="form-group" [ngClass]="{'has-error':!companyForm.controls['name'].valid && companyForm.controls['name'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Name" [formControl]="companyForm.controls['name']" [ngModel]="editItem.name"/>
+                    </div>
+                    
+                    <div class="form-group" [ngClass]="{'has-error':!companyForm.controls['cemail'].valid && companyForm.controls['cemail'].touched}">
+                        <input class="form-control" type="email" placeholder="Company Email" [formControl]="companyForm.controls['cemail']" [ngModel]="editItem.cemail" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                        <div *ngIf="companyForm.controls['cemail'].hasError('required') && companyForm.controls['cemail'].touched" class="alert alert-danger"> Please add an email address</div>
+                        <div *ngIf="companyForm.controls['cemail'].hasError('pattern') && companyForm.controls['cemail'].touched" class="alert alert-danger">Enter valid email address</div>
+                    </div>
+                    
+                     <div class="form-group" [ngClass]="{'has-error':!companyForm.controls['phone'].valid && companyForm.controls['phone'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Phone" [formControl]="companyForm.controls['phone']" [ngModel]="editItem.phone" />
+                        <div *ngIf="companyForm.controls['phone'].hasError('required') && companyForm.controls['phone'].touched" class="alert alert-danger"> Please add the phone no</div>
+                    </div>
+                    
+                     <div class="form-group" [ngClass]="{'has-error':!companyForm.controls['address'].valid && companyForm.controls['address'].touched}">
+                        <input class="form-control" type="text" placeholder="Company Address" [formControl]="companyForm.controls['address']" [ngModel]="editItem.address"/>
+                        <div *ngIf="companyForm.controls['address'].hasError('required') && companyForm.controls['address'].touched" class="alert alert-danger"> Please add the address</div>
+                    </div>
+                    
+                    <div class="form-group" [ngClass]="{'has-error':!companyForm.controls['city'].valid && companyForm.controls['city'].touched}">
+                        <input class="form-control" type="text" placeholder="City" [formControl]="companyForm.controls['city']" [ngModel]="editItem.city"/>
+                        <div *ngIf="companyForm.controls['city'].hasError('required') && companyForm.controls['city'].touched" class="alert alert-danger"> Please add the city</div>
+                    </div>
+               
+                    <div class="form-group">
+                        <input class="btn btn-primary" type="submit" value="Submit" [disabled]="!companyForm.valid"  />
+                      
+{{editItem | json}}
+
+{{companyForm.valid}}
+
+                    </div>
+                </form>
+</div>
+
+
+<div class="col-md-12 col-md-12">
+<h2>Companies Lists</h2>
+<div class="table">
+<table>
+<tr>
+<th>S.No</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Address</th>
+<th>City</th>
+<th>Actions</th>
+</tr>
+
+<tr *ngFor="let company of allcomp; let rowIndex=index">
+<td>{{rowIndex+1}}</td>
+<td>{{ company.name }}</td>
+<td>{{ company.cemail }}</td>
+<td>{{ company.phone }}</td>
+<td>{{ company.address }}</td>
+<td>{{ company.city }}</td>
+<td><a href="javascript:void(0)" class="btn btn-primary" (click)="editcomForm(company)" >Edit</a> <a href="javascript:void(0)" (click)="deleteFieldValue4(company._id)" class="btn btn-primary">Delete</a></td>
+</tr>
+
+</table>
+</div>
+
+</div>
+
+</div>

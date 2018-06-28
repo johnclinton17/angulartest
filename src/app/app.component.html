@@ -1,0 +1,47 @@
+<header *ngIf="isLoggedIn">
+<div class="top-bar"> 
+  <div class=" col-md-2">
+    <div class="nav-brand">
+      <a [routerLink]="['/']" ><img src="../assets/images/logo-inner.png" alt="niyati-workbook"></a>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="working-details">
+      <ul class="datetime">
+        <li>date : {{today | date}}</li><!-- {{ strDate | date :'longDate'}}  -->
+        <li>Check In Time :</li>
+        <li>Work Hours :</li>
+      </ul> 
+    </div>
+  </div>
+  <div class=" col-md-2">
+    <div class="user-info">User</div> 
+  </div>  
+</div>
+<div class="second-bar">
+  <nav class="nav navbar">
+    <ul class="primary-menu">
+     <li><a [routerLink]="['/home']" class="btn btn-link">Home</a></li>
+     <li><a [routerLink]="['/register']" class="btn btn-link">Register</a></li>
+     <li><a [routerLink]="['/user']" class="btn btn-link">User</a></li>
+     <li><a [routerLink]="['/post']" class="btn btn-link">Post</a></li>
+     <li><a [routerLink]="['/popup']" class="btn btn-link">Popup</a></li>
+     <li><a (click)="logout()">Logout</a></li>
+    </ul> 
+  </nav>  
+</div>  
+
+</header>
+<!-- body section -->
+<div class="master-body">
+        <router-outlet></router-outlet>	
+</div>
+<!-- body section -->
+
+
+
+<footer *ngIf="isLoggedIn">
+  <div class="col-md-6 grey footerblocks float-left">Allrights Reserved </div>
+  <div class="col-md-6 grey footerblocks float-right">&copy;copyrights JC</div>
+</footer>
+
